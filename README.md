@@ -1,10 +1,9 @@
 # PostCSS BaseCSS [![Build Status][ci-img]][ci]
 
-[PostCSS] plugin which extracts basic CSS rules for inlining them in your index.html, similar to critical CSS.
+NPM module which extracts basic CSS rules for inlining them in your index.html, similar to critical CSS.
 
-[PostCSS]: https://github.com/postcss/postcss
-[ci-img]:  https://travis-ci.org/Keyes/postcss-basecss.svg?branch=master
-[ci]:      https://travis-ci.org/Keyes/postcss-basecss
+[ci-img]:  https://travis-ci.org/Keyes/basecss.svg?branch=master
+[ci]:      https://travis-ci.org/Keyes/basecss
 
 ## Installation
 
