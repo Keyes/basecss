@@ -1,0 +1,43 @@
+{
+  "name": "basecss",
+  "version": "0.0.0",
+  "description": "NPM module which extracts basic CSS rules for inlining them in your index.html, similar to critical CSS",
+  "keywords": [
+    "css",
+    "basecss",
+    "base",
+    "basic",
+    "inline",
+    "head",
+    "style"
+  ],
+  "author": "Julian Kern <mail@juliankern.com>",
+  "contributors": [
+    {
+      "name": "Dennis Sterzenbach",
+      "email": "dennis.sterzenbach@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Keyes/basecss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Keyes/basecss/issues"
+  },
+  "homepage": "https://github.com/Keyes/basecss",
+  "dependencies": {
+    "css": "^2.2.1",
+    "cssmin": "^0.4.3",
+    "jsdom-nogyp": "^0.8.3",
+    "lodash": "^3.10.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.0.0"
+  },
+  "scripts": {
+    "test": "gulp"
+  }
+}
