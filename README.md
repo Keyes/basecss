@@ -9,14 +9,27 @@
 ## Installation
 
 ```
-npm install postcss-basecss --save
+npm install basecss --save
 ```
 
 
 ## Usage
 
 ```js
-postcss([ require('postcss-basecss')(options) ])
+var BaseCSS = require('basecss');
+
+var options = {
+    htmlFile: 'index.html',
+    cssFile: 'styles.min.css',
+    selectors: [
+        '.col-',
+        '.row',
+        'h[1-6]'
+    ]
+};
+
+new BaseCSS(options).run();
+
 ```
 
 ### Options
@@ -63,6 +76,3 @@ CSS properties that should be excluded. It's mostly good to leave the default va
 #### options.includeFontFace
 Basecss includes by default all @font-face rules in the beginning of the css, so that your fonts get rendered properly. You may want to disable this.
 
----
-
-See [PostCSS] docs for examples for your environment.
