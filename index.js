@@ -21,7 +21,7 @@ var Basecss = function (options) {
             'image[\-a-z]*'
         ],
         includeFontFace: true,
-        minifyCSS: true
+        minifyCSS:       true
     }, options);
 
     return this;
@@ -108,7 +108,7 @@ Basecss.prototype.writeToHtmlFile = function () {
             // append our build css code
             var css = self.toString();
 
-            if (self.options.minifyCSS) { css = cssmin(css); }
+            if (self.options.minifyCSS) css = cssmin(css);
 
             csstag.innerHTML = '\n' + css + '\n';
 
