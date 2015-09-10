@@ -20,7 +20,8 @@ var Basecss = function (options) {
             'cursor', 'nav[\-a-z]*', 'resize',
             'image[\-a-z]*'
         ],
-        includeFontFace: true
+        includeFontFace: true,
+        minifyCSS: true
     }, options);
 
     return this;
@@ -105,7 +106,11 @@ Basecss.prototype.writeToHtmlFile = function () {
             // we need the type attribute!
             csstag.setAttribute('type', 'text/css');
             // append our build css code
-            csstag.innerHTML = '\n' + cssmin(self.toString()) + '\n';
+            var css = self.toString();
+
+            if (self.options.minifyCSS) { css = cssmin(css); }
+
+            csstag.innerHTML = '\n' + css + '\n';
 
             // append our element to the head area
             head.insertBefore(

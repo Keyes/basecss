@@ -45,7 +45,8 @@ Default options:
         'cursor', 'nav[\-a-z]*', 'resize',
         'image[\-a-z]*'
     ],
-    includeFontFace: true
+    includeFontFace: true,
+    minifyCSS: true
 }
 ```
 
@@ -75,3 +76,5 @@ CSS properties that should be excluded. It's mostly good to leave the default va
 #### options.includeFontFace
 Basecss includes by default all @font-face rules in the beginning of the css, so that your fonts get rendered properly. You may want to disable this.
 
+#### options.minifyCSS
+If the CSS should be minified before being inserted - you normally want this
