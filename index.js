@@ -103,7 +103,7 @@ Basecss.prototype.writeToHtmlFile = function () {
 
     var css = self.toString();
     if (self.options.minifyCSS) css = cssmin(css);
-    
+
     csstag.html(css);
 
     head.find('link[rel="stylesheet"]').before(csstag);
