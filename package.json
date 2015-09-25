@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/Keyes/basecss",
   "dependencies": {
+    "cheerio": "^0.19.0",
     "css": "^2.2.1",
     "cssmin": "^0.4.3",
-    "jsdom-nogyp": "^0.8.3",
     "lodash": "^3.10.1"
   },
   "devDependencies": {

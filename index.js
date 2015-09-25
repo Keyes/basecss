@@ -1,7 +1,7 @@
 var parseCSS = require('css');
 var fs = require('fs');
 var _ = require('lodash');
-var jsdom = require('jsdom-nogyp');
+var cheerio = require('cheerio');
 var cssmin = require('cssmin');
 
 // init Basecss
@@ -88,47 +88,34 @@ Basecss.prototype.writeToHtmlFile = function () {
     }
 
     // we need jsdom to nicely traverse through our html code
-    jsdom.env(
-        file.toString('utf-8'), [],
-        function (err, window) {
-            if(err) throw err;
+    var $ = cheerio.load(file.toString('utf-8'));
 
-            var csstag = window.document
-                .querySelector('style[data-id="base-css"]');
-            var head = window.document.querySelector('head');
+    var csstag = $('style[data-id="base-css"]');
+    var head = $('head');
 
-            // do we already have a Basecss style element?
-            if (!csstag) {
-                // if not, create one and set our data-id
-                csstag = window.document.createElement('style');
-                csstag.setAttribute('data-id', 'base-css');
-            }
-            // we need the type attribute!
-            csstag.setAttribute('type', 'text/css');
-            // append our build css code
-            var css = self.toString();
+    if (csstag.length === 0) {
+        csstag = $('<style></style>');
+        csstag.attr('data-id', 'base-css');
+    }
 
-            if (self.options.minifyCSS) css = cssmin(css);
+    console.log('writeToHtmlFile', csstag);
+    csstag.attr('type', 'text/css');
 
-            csstag.innerHTML = '\n' + css + '\n';
+    var css = self.toString();
+    if (self.options.minifyCSS) css = cssmin(css);
+    
+    csstag.html(css);
 
-            // append our element to the head area
-            head.insertBefore(
-                csstag,
-                head.querySelector('link[rel="stylesheet"]')
-            );
+    head.find('link[rel="stylesheet"]').before(csstag);
 
-            // write the html file back to the file system
-            fs.writeFileSync(
-                self.options.htmlFile,
-                window.document.innerHTML
-            );
+    fs.writeFileSync(
+        self.options.htmlFile,
+        $.html()
+    );
 
-            // yay!
-            console.log(
-                'Successfully updated "' + self.options.htmlFile + '"!'
-            );
-        }
+    // yay!
+    console.log(
+        'Successfully updated "' + self.options.htmlFile + '"!'
     );
 };
 
