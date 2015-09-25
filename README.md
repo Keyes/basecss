@@ -1,4 +1,4 @@
-# PostCSS BaseCSS [![Build Status][ci-img]][ci]
+# BaseCSS [![Build Status][ci-img]][ci]
 
 NPM module which extracts basic CSS rules for inlining them in your index.html, similar to critical CSS.
 
