@@ -46,7 +46,9 @@ Default options:
         'image[\-a-z]*'
     ],
     includeFontFace: true,
-    minifyCSS: true
+    minifyCSS: true,
+    overwriteCSS: true,
+    showLog: true
 }
 ```
 
@@ -78,3 +80,9 @@ Basecss includes by default all @font-face rules in the beginning of the css, so
 
 #### options.minifyCSS
 If the CSS should be minified before being inserted - you normally want this
+
+#### options.overwriteCSS
+If set to true, overwrites already existing inline css created by basecss - set to false if you want to process multiple css files after another. Then if appends every css block.
+
+#### options.showLog
+Enabled/disabled the "success!" message at the end

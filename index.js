@@ -21,7 +21,9 @@ var Basecss = function (options) {
             'image[\-a-z]*'
         ],
         includeFontFace: true,
-        minifyCSS:       true
+        minifyCSS:       true,
+        overwriteCSS:    true, // if already present
+        showLog:         true
     }, options);
 
     return this;
@@ -77,6 +79,7 @@ Basecss.prototype.writeToHtmlFile = function () {
     // callback function this=self workaround
     var self = this;
     var file;
+    var css;
 
     try {
         file = fs.readFileSync(this.options.htmlFile);
@@ -98,10 +101,15 @@ Basecss.prototype.writeToHtmlFile = function () {
         csstag.attr('data-id', 'base-css');
     }
 
-    console.log('writeToHtmlFile', csstag);
     csstag.attr('type', 'text/css');
 
-    var css = self.toString();
+
+    if (self.options.overwriteCSS) {
+        css = self.toString();
+    } else {
+        css = csstag.html() + '\n\n' + self.toString();
+    }
+
     if (self.options.minifyCSS) css = cssmin(css);
 
     csstag.html(css);
@@ -114,9 +122,11 @@ Basecss.prototype.writeToHtmlFile = function () {
     );
 
     // yay!
-    console.log(
-        'Successfully updated "' + self.options.htmlFile + '"!'
-    );
+    if (self.options.showLog) {
+        console.log(
+            'Successfully updated "' + self.options.htmlFile + '"!'
+        );
+    }
 };
 
 Basecss.prototype.filterRulesByProperties = function (propertyArray) {
