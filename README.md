@@ -1,4 +1,4 @@
-# BaseCSS [![Build Status][ci-img]][ci]
+# BaseCSS [![Build Status][ci-img]][ci][![npm version](https://badge.fury.io/js/basecss.svg)](http://badge.fury.io/js/basecss)
 
 NPM module which extracts basic CSS rules for inlining them in your index.html, similar to critical CSS.
 
