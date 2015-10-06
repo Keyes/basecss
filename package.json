@@ -1,6 +1,6 @@
 {
   "name": "basecss",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "NPM module which extracts basic CSS rules for inlining them in your index.html, similar to critical CSS",
   "keywords": [
     "css",
