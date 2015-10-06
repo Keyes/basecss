@@ -114,7 +114,13 @@ Basecss.prototype.writeToHtmlFile = function () {
 
     csstag.html(css);
 
-    head.find('link[rel="stylesheet"]').before(csstag);
+    var firstStylesheet = head.find('link[rel="stylesheet"]');
+    firstStylesheet.before(csstag);
+
+    if (firstStylesheet.length === 0) {
+        head.append(csstag);
+    }
+
 
     fs.writeFileSync(
         self.options.htmlFile,
@@ -146,13 +152,15 @@ Basecss.prototype.filterRulesByProperties = function (propertyArray) {
             // loop over our properties from the options
             for (var prop in propertyArray) {
                 // do they match?
-                search = properties[i]
-                    .property
-                    .search(propertyArray[prop]);
+                if (properties[i] && properties[i].property) {
+                    search = properties[i]
+                        .property
+                        .search(propertyArray[prop]);
 
-                if (search !== -1) {
-                    // remove this property!
-                    properties.splice(i, 1);
+                    if (search !== -1) {
+                        // remove this property!
+                        properties.splice(i, 1);
+                    }
                 }
             }
         }
