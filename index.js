@@ -36,9 +36,6 @@ Basecss.prototype.getData = function (name) {
     });
 };
 
-
-
-
 // get specific rules by selector
 Basecss.prototype.fetchRulesBySelectors = function (selectorArray) {
     selectorArray = selectorArray || this.options.selectors;
